@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.top{
+		background-color: palegreen;
+		color: white;
+		margin: 10px auto;
+		padding: 10px;
+	}
+	.nav{
+		background-color: #EFEFEF;
+		font-size: 12px;
+		padding: 5px;
+	}
+	a{
+		text-decoration: none;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
+</style>
+<script type="text/javascript">
+	 function btnClear_click(){
+		
+	}	 
+	 function btnReturn_cilck(){
+	 	window.location="/";
+	 }
+</script>
+<body>
+	<div class="top">
+		图书管理系统首页
+	</div>
+	<div class="nav">
+		<a href="http://localhost:3333">首页</a>
+		<a href="http://localhost:3333/search">查询书籍</a>
+		<a href="http://localhost:3333/add">添加书籍</a>
+	</div>
+	
+	
+	<h3>
+		添加书籍
+	</h3>
+	
+	<form action="/addBook" method="post">
+		书籍名称：<input type="text" name="bookname" id="bookname" clientidmode="Static" value="" placeholder="请填写书籍名称" />
+		<br />作者：<input type="text" name="author" id="author"  placeholder="请填写作者" />
+		<br />价格：<input type="text" name="price" id="price"  placeholder="请填写书籍价格" />
+								
+		<br /><input type="submit" value="添加"/>
+		<input type="reset" name="btnClear" id="btnClear" value="清空" onclick="btnClear_click()" />
+		<input type="button" name="btnReturn" id="btnReturn" value="返回" onclick="btnReturn_cilck();" />
+		<% if(msg){%>
+		<div class="msg"> <%=msg%> </div>
+		<%	}else{ %>
+			<div class="msg"> 请填写书籍信息！！ </div>				
+		<%}%>
+
+	</form>
+	
+	
+</body>
+</html>

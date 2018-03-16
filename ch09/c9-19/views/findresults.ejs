@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+		</title>
+		<link rel="stylesheet" type="text/css" href="../public/view.css"/>
+	</head>
+
+	<body>
+		<form action="/findresults" id="form1" method="post">
+			<table border="" cellspacing="" cellpadding="">
+				<tr >
+						书籍查找结果
+				</tr>
+				<tr >
+					<th>书名</th>	
+					<th>作者</th>	
+					<th>价格</th>	
+				</tr>
+				<tr>
+					<%
+						books.forEach(function(book){
+						
+					%>	
+				<tr>
+					<td>   <%=book.bookname%>     </td>
+					<td>     <%=book.author%>    </td>
+					<td>      <%=book.price%>   </td>
+				</tr> 
+					
+					<%	
+					});
+						
+					%>
+				</tr>
+				<tr>
+					<td colspan="3" class="but">
+						<input type="submit"  value="返回"/>
+					</td>
+				</tr>
+			</table>
+
+		</form>
+	</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script > 
+		var socket=io.connect();
+		socket.on('message',function(data){
+			console.log(data);
+		
+		});
+			socket.send('你也很棒棒哦!!!');
+	
+		
+	</script>
+	<body>
+		
+		<h1>
+			走你    come on baby!!!!
+		</h1>
+	</body>
+</html>

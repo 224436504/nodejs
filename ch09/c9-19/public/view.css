@@ -1,0 +1,41 @@
+table{
+	width: 500px;
+	border: 1px solid #efefef;
+	margin: 20px auto;
+	border-collapse: collapse;
+	font-size: 12pt;
+}
+td{
+	border:1px solid #efefef;
+	padding: 10px;
+}
+.title{
+	font-size: 16pt;
+	font-weight: bold;
+	text-align: center;
+	background-color: #efefef;
+}
+td.col1{
+	text-align: right;
+}
+.button{
+	text-align: center;
+}
+input[type="submit"]{
+	width: 100px;
+	color: green;
+	background-color: pink;
+}
+img{
+	width: 18px;
+	height: auto;
+	display: inline-block;
+}
+
+td.msg{
+	background: #efefef;
+	color:red;
+	font-size: 12pt;
+}
+
+

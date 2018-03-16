@@ -1,0 +1,7 @@
+
+D:\node516.js\node.exe
+D:\codes\ch13\c13-12\test1.js
+one
+2
+3
+4

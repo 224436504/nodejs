@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script > 
+		var socket=io.connect();
+		
+//		socket.on('message',function(data){
+//			console.log(data);
+//		
+//		});
+//			socket.send('你也很棒棒哦!!!');
+		var setNickname=function(){
+			socket.emit('setNickname',document.getElementById("nickname").value);
+			console.log("昵称设置完毕");
+		}
+		var getNickname=function(){
+			socket.emit('getNickname');
+			
+		}
+		socket.on('sendNickname',function(data){
+			
+			alert(data);
+		})
+		
+	</script>
+	<body>
+		
+		<h1>
+			走你 666   come on baby!!!!
+		</h1>
+		
+		昵称:<input type="text" id="nickname" />
+		<input type="button" value="设置昵称" onclick="setNickname()" />
+		<input type="button" value="获取昵称" onclick="getNickname()"/>
+	</body>
+</html>

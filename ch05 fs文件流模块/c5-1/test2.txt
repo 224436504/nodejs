@@ -1,0 +1,13 @@
+node_modules下的文件不用再写路径
+	即未写路径时 
+	会直接在node_modules中打开文件
+	var Math=require('math');
+
+npm node package management
+npm 管理包工具
+fs 模块 文件系统模块 所有操作都有两种方式 异步sync与同步
+npm install 模块名
+npm list
+npm update  模块名
+npm root-g 当前npm的安装路径
+npm uninstall

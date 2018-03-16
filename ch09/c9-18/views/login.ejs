@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%=title%></title>
+	<link rel="stylesheet" type="text/css" href="../public/view.css"/>
+</head>
+<body>
+	<form action="/login" id="form1" method="post">
+		<table>
+			<tr colspan="2"  class="title" >
+				<td>
+					登录窗口
+				</td>
+			</tr>
+			<tr>
+				<td>用户:</td>
+				<td>
+					<input id="tbxUser" name="user" required
+					autofocus placeholder="用户名不能为空!"
+					>
+				</td>
+			</tr>
+			<tr>
+				<td>密码:</td>
+				<td>
+					<input type="password" id="tbxPass" name="pass"
+					autofocus placeholder="密码不能为空!"
+					>
+				</td>
+
+			</tr>
+			<tr>
+				
+				<td colspan="2">
+					<input type="submit" value="登录"/>
+				</td>
+			</tr>
+			
+			<tr>
+				
+				<td colspan="2">
+					<input type="checkbox" id="nologin" value="一周免登录"/>一周免登录
+				</td>
+			</tr>
+			<tr>
+				<td  colspan="2">
+					<span id="msg">
+						<%=msg%>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body> 
+</html>

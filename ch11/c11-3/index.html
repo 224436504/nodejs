@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script > 
+		var socket=io.connect();
+		socket.on('news',function(data){
+			console.log(data.hello);
+			
+			
+		})
+		socket.on('setName',function(name,fn){
+			console.log(name);
+			//触发回调函数
+			fn('美女','人妖');
+			
+			
+		});
+//		socket.on('message',function(data){
+//			console.log(data);
+//		
+//		});
+//			socket.send('你也很棒棒哦!!!');
+//	
+		
+	</script>
+	<body>
+		
+		<h1>
+			走你    come on baby!!!!
+		</h1>
+	</body>
+</html>

@@ -1,0 +1,171 @@
+//当使用var声明变量时 无法在其他导入的文件里面引用
+
+node_modules下的文件不用再写路径
+	即未写路径时 
+	会直接在node_modules中打开文件
+	var Math=require('math');
+
+npm node package management
+npm 管理包工具
+fs 模块 文件系统模块 所有操作都有两种方式 异步与同步
+npm install 模块名
+npm list
+npm update  模块名
+npm root-g 当前npm的安装路径
+npm uninstall
+utf-8 一个汉字用三个字节表示；
+
+
+
+ch01
+var show=function(){
+	console.log("ok");
+}
+exports.show=show;
+exports 声明函数公开 可被其他js调用
+
+ch03 
+c3-2 
+console.time('loop');
+for(let i=0;i<100000;i++){
+	
+}
+console.timeEnd('loop');
+输出循环100000次所需要的时间
+c3-3
+silly-datetime 组件 获得系统的当前时间
+require(“silly-datatime”).format(new Date(),'YYYY-MM-DD HH:mm:ss');
+format 转化时间的格式
+c3-5
+var zhouchang=function(w,h){
+	return "矩形的周长:"+2*(w+h);
+};
+exports.zhouchang=zhouchang;
+将zhouchang函数进行外用声明；
+c3-6
+"当前详细路径%s",__filename；
+"当前目录名%s",__dirname；
+
+ch05 fs文件流模块
+c5-1 readFile函数
+readFile("路径名",编码格式,回调函数);
+readFile('./test2.txt',{encoding:'utf-8'},function(err,data){}); 同步写法
+try{}catch(ex){
+
+}
+
+
+流模式 与 块模式
+
+
+c5-30，c5-31，c5-32
+var rs=fs.createReadStream 创建一个可读流 （可暂停）
+事件 open （data end close ）err
+eg： rs.on("事件"，function(){
+	//回调函数
+})
+data 可能多次读取 当数据过多时会进行
+rs.pause();//暂停
+setTimeout(function(){
+	rs.resume();//继续
+},5000)
+
+var ws=fs.createWriteStream('./msg.txt',{encoding:'utf8'});// 创建一个可写流
+
+net 应用层 
+
+
+ip地址
+ A 类地址 0-127
+B类地址 128-191
+C 192-223
+D 224-240
+E 241-255
+
+ch07 c7-1
+
+ch07 c7-4
+response {
+httpVersion:http 协议的版本号
+method:请求方式
+header:http头文件
+URL:统一资源定位符
+}
+物理路径和虚拟路径
+
+http 默认端口80
+c7-5 
+form表单提交数据与后台服务器联系
+request.on('data',function(data){
+	
+});
+endecodeURIComponent(@data);
+@data   中文 --->不可读乱码
+	英文或拼音,数字--->可读
+	标点或空格等特殊字符--->转码
+decodeURIComponent(data);反编码函数--->中文等数据显示正常 
+c7-6
+http协议返回的基本页面所包含的内容
+res.writeHead(状态码,{内容类别});
+res.write();
+res.end();
+c7-7
+res.statusCode=200;
+res.statusMessage="状态提示语句" 默认为ok;
+res.setHeader();
+以上三个对象可替代res.writeHead(200,{});
+setHeader 与writeHead 的区别 
+setheader可多次使用 但每次只能传递一个状态内容,
+writeHead只能使用一次 但能一次传递多个状态内容 以对象方式
+c7-8
+eg:     http://127.0.0.1:3000/books/cn/findbook.html?id=1&type=novel
+href ---- http://127.0.0.1:3000/books/cn/findbook.html?id=1&type=novel
+protocol----http:
+host---127.0.0.1:3000
+hostname---127.0.0.1
+port---3000
+path---/books/cn/findbook.html?id=1&type=novel
+pachname--- /books/cn/findbook.html
+search---?id=1&type=novel
+query---id=1&type=novel
+query比search 几乎都是使用query
+c7-9
+页面访问跳转的基本原理
+根据不同的url跳转页面
+
+c7-10
+eg    http://127.0.0.1:3000/findbook.js?id=1&author=abc 
+url.parse(req.url).query---id=1&author=abc
+url.parse(req.url,true).query---{ id: '1', author: 'abc' }
+url.parse(指定的url,true/false) URL的解析方法 默认false
+但是将query转成对象格式更加的适用
+
+
+c9-14
+
+serveStatic 静态文件中间件
+
+c10-1
+uncaughtException 处理未捕获的异常;
+
+dmain 模块 中的bind方法
+d.bind()方法将某个函数绑定到domain中,监控其的异常
+
+
+
+c10-6
+将express模块与domain模块结合
+
+c11
+sokect io
+ 
+sokect.emit()方法 自定义交流事件
+
+
+
+
+
+
+
+
+

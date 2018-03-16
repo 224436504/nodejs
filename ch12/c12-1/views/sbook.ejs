@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>图书信息管理系统</title>
+		<link rel="stylesheet" type="text/css" href="/css/sbook.css" />
+	</head>
+
+	<body>
+		<form action="/search" method="post" id="form1">
+			<table border="none" cellspacing="" cellpadding="">
+				<tr>
+					<td class="title" colspan="4">图书信息管理系统</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						书名或作者：<input type="text" name="keyword" id="tbxkeyword" placeholder="关键字不能为空" autofocus="autofocus" required="required" />
+						<input type="submit" name="btnSearch" class="but" value="查找" />
+					</td>
+				</tr>
+				<tr>
+					<td>序号</td>
+					<td>书名</td>
+					<td>作者</td>
+					<td>价格</td>
+				</tr>
+				<%   books.forEach(function(book){  %>
+				<tr>
+					<td><%=book.ID%></td>
+					<td><%=book.bookname%></td>
+					<td><%=book.author%></td>
+					<td><%=book.price%></td>
+				</tr>
+				<% }) %>
+				
+				<%  if(books.length==0){ %>					
+				<tr> <td colspan="4" style="color: red; font-size: 20px;"> 未查询到结果</td></tr>
+				<% }%>
+					
+					<tr><td  colspan="4"><% errMsg %></td></tr>
+			</table>
+
+		</form>
+	</body>
+
+</html>

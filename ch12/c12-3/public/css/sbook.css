@@ -1,0 +1,39 @@
+table{
+	margin: 100px auto;
+	width: 400px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+td{
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+}
+
+td.title{
+	background-color: gray;
+	color: white;
+	font-size: 14pt;
+	text-align:center;
+}
+td.msg{
+	background-color: #EFEFEF;
+	color: black;
+	font-size: 14pt;
+	text-align:left;
+	
+	
+}
+td.colname{
+	width: 100px;
+	padding: 10px;
+}
+input{
+	font-size: 12pt;
+}
+input.but{
+width: 100px;
+font-size: 14pt;		
+}
+

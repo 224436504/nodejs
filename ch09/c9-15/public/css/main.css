@@ -1,0 +1,32 @@
+.container{
+	width: 500px;
+	height: 500px;
+	border: 2px solid #ff6700;
+	font-size: 16pt;
+	margin: 20% auto;
+	font-family: "微软雅黑";
+}
+h1{
+ text-align: center;
+}
+#form1{
+	width: 50%;
+	height: 50%;
+	display: block;
+	margin: auto auto;
+}
+input{
+
+	width: 150px;
+
+}
+input[type="submit"]{
+	display: block;
+	margin: 0 auto;
+	width: 100px;
+	font-size:20px;
+}
+img{
+	display: block;
+	margin: 0 auto;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script > 
+		var socket=io.connect();
+		socket.on('news',function(data){
+			console.log(data.hello);
+			
+			
+		})
+		socket.emit('news_back',{hello:"关你毛事"});
+//		socket.on('message',function(data){
+//			console.log(data);
+//		
+//		});
+//			socket.send('你也很棒棒哦!!!');
+//	
+		
+	</script>
+	<body>
+		
+		<h1>
+			走你    come on baby!!!!
+		</h1>
+	</body>
+</html>

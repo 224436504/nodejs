@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		var userName,tbxUsername,tbxMsg,divChat,socket;
+		var window_onload=function(){
+			tbxUsername=document.getElementById("tbxUsername");
+			divChat=document.getElementById('divChat');
+			tbxMsg=document.getElementById('tbxMsg');
+			tbxUsername.focus();//取得焦点
+			tbxUsername.select();//选取所有内容
+			
+		};
+		function addMsg(msg){
+			divChat.innerHTML+=msg+"</br>";
+		};
+		
+		function add(msg){
+			divChat.innerHTML+=msg+"</br>";
+		};
+		//单击登录按钮
+		function btnLogin_onclick(){
+			userName=tbxUsername.value.trim();
+			if(userName==''){
+				alert("请输入用户名");
+				return;
+			};
+			socket = io.connect();
+			//一旦与服务端连接成功将触发connct事件
+			socket.on('connect',function(){
+				socket.emit('login',userName);
+				socket.emit('duplicate',userName);
+				addMsg("与聊天室连接成功！");
+					socket.on('duplicate',function(){
+					alert("该昵称已被使用");
+					document.getElementById("btnsend").disabled=true;
+					document.getElementById("btnLogout").disabled=true;
+					document.getElementById("btnLogin").disabled='';
+					return
+					});
+				socket.on('login',function(name){
+				addMsg('欢迎 '+name+'进入聊天室' );
+				document.getElementById("btnLogin").disabled=true;
+				document.getElementById("btnsend").disabled=false;
+				document.getElementById("btnLogout").disabled=false;
+				});
+				//更新用户列表
+				socket.on("sendClients",function(names){
+				var divUsers=document.getElementById("divUsers");
+				var str="";
+				names.forEach(function(name){
+					str+=name+'</br>';					
+				});
+				divUsers.innerHTML="用户列表：</br>"+str;				
+				});
+				
+				socket.on('logout',function (name) {
+					addMsg('用户'+name+'已退出聊天室！');
+				});
+				//	
+				socket.on('sendMsg',function(arr){
+				addMsg(arr[0]+":"+arr[1]);
+				})
+			});
+
+		};
+		//注销登录
+		function btnLogout_onclick(){
+			socket.emit("logout",userName);
+			socket.disconnect();
+			socket.removeAllListeners('connect');
+			io.sockets={};
+			divChat.innerHTML="";
+			addMsg("用户 "+userName+"退出聊天室");
+			var divUsers=document.getElementById("divUsers");
+			divUsers.innerHTML="用户列表";
+			document.getElementById("btnLogin").disabled='';
+			document.getElementById("btnsend").disabled=false;
+			document.getElementById("btnLogout").disabled=true;
+		}
+		
+		function btnSendmsg_onclick(){
+			var Msg=document.getElementById("tbxMsg").value;
+			var arr=[userName,Msg];
+			if(Msg){
+				socket.emit('sendMsg',arr);		
+				document.getElementById("tbxMsg").value="";
+			}
+			
+		}
+		
+		
+	</script>
+
+	<body onload="window_onload()">
+		<style type="text/css">
+			* {
+				font-family: "微软雅黑";
+			}
+			
+			h1 {
+				text-align: center;
+			}
+			.container{
+				position: absolute;
+				margin: 0 auto;
+				width: 300px;
+				height: 35px;
+			}
+			.login{
+				position: absolute;
+				border: double black 3px;
+				top: 10px;
+				right: 10px;
+				width: 200px;
+				height: 50px;
+			}
+			#divUsers{
+				position: absolute;
+				border: dashed black 3px;
+				top: 70px;
+				right: 10px;
+				width: 200px;
+				height: 600px;
+			}
+			#divChat{
+				position: absolute;
+				border: dashed black 3px;
+				top: 70px;
+				right: 220px;
+				width: 200px;
+				height: 600px;
+			}
+		</style>
+		<h1>聊天室</h1>
+
+		<!--<form action="/login" method="post" name="form1" id="form1">-->
+			<!--<div class="container">
+				密码:<input type="text" name="pass" />
+
+			</div>-->
+			<div class="login">
+					用户名:<input type="text" name="tbxUsername"  id="tbxUsername" value="游客" /><br />
+				<input type="button" name="btnLogin" id="btnLogin" value="登录"  onclick="btnLogin_onclick();"/>
+				<input type="button" name="btnLogout" id="btnLogout" value="注销" onclick="btnLogout_onclick();" disabled="disabled"/>
+			</div>
+			<div id="divUsers">
+				用户列表：
+				
+			</div>
+			<div id="divChat">
+				状态信息：
+			</div>
+			<div>
+				<textarea name="tbxMsg" id="tbxMsg" rows="5" cols="60"></textarea>
+			</div>
+			<div id="">
+				<input type="button" name="btnsend" id="btnsend" value="发送" onclick="btnSendmsg_onclick();" disabled="disabled" />
+			</div>
+		<!--</form>-->
+
+	</body>
+
+</html>
